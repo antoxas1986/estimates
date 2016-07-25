@@ -1,0 +1,47 @@
+<div data-ng-include="vm.navBar"></div>
+<div class="container">
+    <center>
+        <h1>Chapter creater</h1>
+    </center>
+    <table>
+        <tr>
+            <th>New chapters</th>
+            <th>Existing chapters</th>
+        </tr>
+        <tr>
+            <td class="well">
+                <button class="btn btn-primary" ng-click="vm.add()">Add	chapter</button>
+                <div data-ng-repeat="chapter in vm.chapters track by $index">
+                    <div class="form-inline">
+                        <input type="text" class="form-control" ng-model="chapter.name" />
+                        <button class="btn btn-danger" ng-click="vm.remove($index)">
+								<i class="glyphicon glyphicon-remove"></i>
+							</button>
+                    </div>
+                </div>
+            </td>
+            <td class="well">
+                <div data-ng-repeat="chap in vm.chaps">
+                    <a ng-click="vm.update(chap)">{{chap.name}}</a>
+                    <span style="float: right">
+                        <button class="btn btn-danger btn-xs"
+								ng-click="vm.deleteDB(chap.id)">
+								<i class="glyphicon glyphicon-trash"></i>
+						</button>
+                    </span>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <button class="btn btn-success col-lg-offset-3" data-ng-click="vm.save()">Save</button>
+
+    <div id="msg" class="white_content">
+        <div class="col-lg-7">
+            <input type="text" class="form-control" ng-model="vm.chapter.name" />
+        </div>
+        <button class="btn btn-sm btn-success" ng-click="vm.upd(vm.chapter)">Rename</button>
+        <button class="btn btn-sm btn-primary" ng-click="vm.close()">Close</button>
+    </div>
+    <div id="fade" class="black_overlay"></div>
+
+</div>

@@ -1,0 +1,78 @@
+textarea{
+	float:left;
+}
+.notice{
+	background-color:#d4d4d4;
+	font-size: 20px;
+	text-align:center;
+	border-radius:5px;
+	margin: 10px 10px 10px 10px;
+	box-shadow:5px 5px 5px grey;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+tr.header, td.header {
+	border: 1px solid #d4d4d4;
+	background-color: #FDEADA;
+	font-style:oblique;
+	font-weight: bold;
+	line-height: 20px;
+	
+}
+td.hdr{
+	background-color: #D9D9D9;
+	text-align: center;
+}
+
+.description {
+	width: 43%;
+}
+
+.amount {
+	width: 6%;
+}
+
+.price {
+	width: 5%;
+}
+
+.unit {
+	width: 10%;
+	font-size: 14px;
+}
+
+.minimum {
+	width: 7% !important;
+}
+
+.total {
+	width: 7%;
+}
+.customerAmount{
+	width:7%;
+}
+.customerTotal{
+	width:7%;
+}
+input[type="text"] {
+    width: 80px;
+}
+td {
+	border: 1px solid #d4d4d4;
+	background-color: #F8F8F8;
+}
+th{
+	text-align: center;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th,
+	.table>thead>tr>td, .table>thead>tr>th {
+	padding: 2px;
+	vertical-align: middle;
+}
+.customerChange{
+	color:red;
+}

@@ -1,0 +1,27 @@
+<div class="bg">
+    <div class="row">
+        <div class="text-center">
+            <h1>Glorem Projects</h1>
+        </div>
+    </div>
+
+    <p class="text-danger text-center">{{vm.error}}</p>
+
+    <form class="myform" autocomplete="off" novalidate shake-that>
+        <p class="clearfix">
+            <label for="login">Username</label> <input type="text" name="username" id="username" placeholder="Username" ng-model="vm.user.username">
+        </p>
+        <p class="clearfix">
+            <label for="password">Password</label> <input type="password" name="password" id="password" placeholder="Password" ng-model="vm.user.password">
+        </p>
+        <p class="clearfix">
+            <input type="submit" name="submit" value="Sign in" ng-click="vm.login(vm.user)" />
+        </p>
+    </form>
+    <div class="clock-container text-center">
+        <p>{{vm.clock | date:'mediumTime'}}</p>
+        <p>{{vm.greeting}}</p>
+        <div></div>
+    </div>
+
+</div>

@@ -1,0 +1,81 @@
+.estDec{
+	background-color:#ff8686;
+}
+.estAgr{
+	background-color:#acffac;
+}
+.estMod{
+	background-color:#ffff8e;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+.table{
+	margin-bottom: 0;
+}
+tr.header, td.header {
+	border: 1px solid #d4d4d4;
+	background-color: #FDEADA;
+	font-style:oblique;
+	font-weight: bold;
+	line-height: 20px;
+	
+}
+td.hdr{
+	background-color: #D9D9D9;
+	text-align: center;
+}
+td.type{
+	width:7%;
+}
+ 
+input[type="text"].f {
+    width: 80px;
+}
+.description {
+	width: 55%;
+}
+.address{
+	width:25%;
+}
+
+.amount {
+	width: 12%;
+}
+
+.price {
+	width: 7%;
+}
+
+.unit {
+	width: 10%;
+	font-size: 14px;
+}
+
+.minimum {
+	width: 7% !important;
+}
+
+.total {
+	width: 7%;
+}
+
+.but {
+	width: 4%;
+}
+
+td {
+	border: 1px solid #d4d4d4;
+	background-color: #F8F8F8;
+}
+th{
+	text-align: center;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th,
+	.table>thead>tr>td, .table>thead>tr>th {
+	padding: 2px;
+	vertical-align: middle;
+}

@@ -1,0 +1,18 @@
+env:
+  browser: true
+extends: ['eslint:recommended', 'angular']
+rules:
+  linebreak-style:
+    - error
+    - windows
+  quotes:
+    - error
+    - single
+  semi:
+    - error
+    - always
+angular/controller-as-route: 1
+angular/controller-as-vm: 1
+angular/controller-as: 1
+angular/empty-controller: 1
+angular/controller-name: [2, "/[A-Z].*Ctrl/"]

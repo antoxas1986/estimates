@@ -1,0 +1,45 @@
+<html ng-app="glorem">
+
+<head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <!-- Bootstrap CSS v3.3.5 or higher -->
+	<link href="/resources/js/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/resources/css/login.css" rel="stylesheet" type="text/css" />
+	<!-- jQuery v1.9.1 or higher -->
+	<script type="text/javascript" src="/resources/js/jQuery/dist/jquery.min.js"></script>
+
+	<!-- Bootstrap JS -->
+	<script type="text/javascript" src="/resources/js/bootstrap/js/bootstrap.min.js"></script>
+	<!-- Main angular js -->
+	<script type="text/javascript" src="/resources/js/angularJS/angular.min.js"></script>
+	<script type="text/javascript" src="/resources/js/angularJS/angular-animate.min.js"></script>
+	<script type="text/javascript" src="/resources/js/angularJS/angular-resource.min.js"></script>
+	<script type="text/javascript" src="/resources/js/angularJS/angular-ui-router.min.js"></script>
+	<script type="text/javascript" src="/resources/js/angularJS/angular-sanitize.min.js"></script>
+	<script type="text/javascript" src="/resources/js/helper/loading-bar.js"></script>
+	<script type="text/javascript" src="/resources/js/angularJS/ng-table.js"></script>
+	<script type="text/javascript" src="/resources/js/angularJS/ui-bootstrap-tpls-0.12.0.min.js"></script>
+
+	<!-- AngularJS script -->
+	<script type="text/javascript" src="/resources/js/AngularMain.js"></script>
+	<script type="text/javascript" src="/resources/js/directives.js"></script>
+    <script type="text/javascript" src="/resources/components/login/loginRoute.js"></script>
+    <script type="text/javascript" src="/resources/components/admin/adminRoute.js"></script>
+	<script type="text/javascript" src="/resources/components/login/loginController.js"></script>
+	<script type="text/javascript" src="/resources/components/login/loginService.js"></script>
+	<script type="text/javascript" src="/resources/components/admin/adminController.js"></script>
+	<script type="text/javascript" src="/resources/components/admin/adminServices.js"></script>
+
+
+	<title>Glorem-Projects Authorization</title>
+</head>
+
+<body>
+
+	<ui-view></ui-view>
+
+</body>
+
+</html>

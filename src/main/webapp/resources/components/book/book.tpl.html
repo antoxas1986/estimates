@@ -1,0 +1,49 @@
+<div data-ng-include="vm.navBar"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 form-group">
+            <input type="text" class="form-control" data-ng-model="vm.form.name" placeholder="Enter form name">
+        </div>
+        <div class="col-lg-6 form-grou">
+            <button class="btn btn-primary" data-ng-click="vm.createSchema()" data-ng-show="vm.form.ids.length!=0">Save form for estimate</button>
+        </div>
+    </div>
+    <hr class="col-sm-12">
+    <br>
+    <center>
+        <h1>Estimate book</h1>
+    </center>
+
+
+    <table class="table">
+        <tr>
+            <td class="description hdr"><em><strong>Work description</strong></em></td>
+            <td class="amount hdr"><em><strong>Amount</strong></em></td>
+            <td class="price hdr"><em><strong>Price</strong></em></td>
+            <td class="unit hdr"><em><strong>Unit</strong></em></td>
+            <td class="minimum hdr"><em><strong>Minimum charge</strong></em></td>
+            <td class="total hdr"><em><strong>Total</strong></em></td>
+            <td class="but hdr"></td>
+            <td class="hdr"></td>
+        </tr>
+        <tr>
+            <td colspan="8" style="height: 6px; background-color: #9B3A38"></td>
+        </tr>
+    </table>
+    <table class="table" data-ng-repeat="chapter in vm.estimateForm">
+        <tr class="header">
+            <th colspan="8">{{chapter.chapterName}}</th>
+        </tr>
+        <tr data-ng-repeat="item in chapter.tjList">
+            <td class="description">{{$index + 1}}. {{item.workDescription}}</td>
+            <td class="amount"><input type="text" data-ng-model="item.amount"></td>
+            <td class="price" align="right">{{item.price|currency:undefined:0}}</td>
+            <td class="unit">{{item.unitName}}</td>
+            <td class="minimum" align="right">{{item.minimumCharge|currency:undefined:0}}</td>
+            <td class="total">{{item.amount*item.price|currency:undefined:0}}</td>
+            <td class="but"><button class="btn btn-danger" data-ng-click="vm.remove(item.id)">
+					<i class="glyphicon glyphicon-trash"></i></button></td>
+            <td><input type="checkbox" checklist-model="vm.form.ids" checklist-value="item.id"></td>
+        </tr>
+    </table>
+</div>
