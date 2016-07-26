@@ -14,7 +14,7 @@
             },
             templateUrl: 'resources/components/estimateListShow/estimatesList.tpl.html',
             controller: 'EstimatesListController',
-            controllerAs: 'ELC'
+            controllerAs: 'vm'
         });
     }
 } ());

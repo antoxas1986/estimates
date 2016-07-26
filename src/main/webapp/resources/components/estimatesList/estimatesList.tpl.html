@@ -1,4 +1,4 @@
-<div data-ng-include="ELC.navBar"></div>
+<div data-ng-include="vm.navBar"></div>
 <div class="container">
 
     <center>
@@ -21,7 +21,7 @@
         <tr>
             <td colspan="10" style="height: 6px; background-color: #9B3A38"></td>
         </tr>
-        <tr data-ng-repeat="estimate in estimates | orderBy:'-date'">
+        <tr data-ng-repeat="estimate in vm.estimates | orderBy:'-date'">
             <td><strong>{{estimate.typeEstimate}}</strong></td>
             <td><strong>{{estimate.date}}</strong></td>
             <td>{{estimate.address}}</td>
@@ -30,13 +30,13 @@
             <td>{{estimate.email}}</td>
             <td align="center" ng-class="{'estDec': estimate.status=='ED', 'estAgr': estimate.status=='EA','estMod': estimate.status=='ECM'}"><strong>{{estimate.status}}</strong></td>
             <td style="text-align: center">
-                <a class="btn btn-sm btn-warning" ng-click="ELC.editEstimate(estimate.id)"> <i class="glyphicon glyphicon-edit"></i> </a>
+                <a class="btn btn-sm btn-warning" ng-click="vm.editEstimate(estimate.id)"> <i class="glyphicon glyphicon-edit"></i> </a>
             </td>
             <td style="text-align: center">
-                <a class="btn btn-sm btn-primary" ng-click="ELC.sendEstimate(estimate.id)"> <i class="glyphicon glyphicon-envelope"></i> </a>
+                <a class="btn btn-sm btn-primary" ng-click="vm.sendEstimate(estimate.id)"> <i class="glyphicon glyphicon-envelope"></i> </a>
             </td>
             <td style="text-align: center">
-                <a class="btn btn-sm btn-danger" ng-click="ELC.remove(estimate.id)"> <i class="glyphicon glyphicon-trash"></i> </a>
+                <a class="btn btn-sm btn-danger" ng-click="vm.remove(estimate.id)"> <i class="glyphicon glyphicon-trash"></i> </a>
             </td>
         </tr>
     </table>

@@ -12,6 +12,6 @@
                 principal.authenticate(null);
                 $state.go('/');
             }
-        }
+        };
     }
-} ())
+} ());

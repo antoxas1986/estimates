@@ -7,40 +7,39 @@
 
 	function EstimatesListController($scope, estimateListShowService, $location, $rootScope, $window) {
 
-		var ELC = this;
-		ELC.navBar = 'resources/share/navBar.html';
-		ELC.editEstimate = editEstimate;
-		ELC.remove = remove;
-		ELC.sendEstimate = sendEstimate;
+		var vm = this;
+		vm.navBar = 'resources/share/navBar.html';
+		vm.editEstimate = editEstimate;
+		vm.remove = remove;
+		vm.sendEstimate = sendEstimate;
+		vm.estimates = [];
 
 		activate();
 
-		return ELC;
+		return vm;
 
 		function editEstimate(id) {
 			$window.location.href = '/editCustomerEstimate' + id;
 		}
 
 		function remove(id) {
-			deleteCustomer = $window.confirm('Are you shure you want to DELETE CUSTOMER');
+			var deleteCustomer = $window.confirm('Are you shure you want to DELETE CUSTOMER');
 			if (deleteCustomer) {
 				estimateListShowService.customer.remove({ id: id }, function () {
-					window.location.href = '/estimates';
+					$window.location.href = '/estimates';
 				});
 			}
 		}
 
 		function sendEstimate(id) {
-			estimateListShowService.sendEstimate.get({
-				id: id
-			}).$promise.then(function () {
+			estimateListShowService.sendEstimate.get({id: id}).$promise.then(function () {
 				alert('Estimate send. Thank you.');
 			});
 		}
 
 		function activate() {
 			estimateListShowService.customer.get().$promise.then(function (data) {
-				$scope.estimates = data;
+				vm.estimates = data;
 			});
 		}
 

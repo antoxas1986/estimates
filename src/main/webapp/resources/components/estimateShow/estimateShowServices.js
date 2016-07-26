@@ -6,7 +6,7 @@
 			customer : $resource('/customer',{},{
 				'get':{method:'GET', isArray:true}
 			})			
-		}
+		};
 	}
 	
 }());

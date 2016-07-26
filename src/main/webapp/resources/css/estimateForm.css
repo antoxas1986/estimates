@@ -1,49 +1,73 @@
-.estDec{
-	background-color:#ff8686;
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+	padding: 2px;
+	vertical-align: middle;
 }
-.estAgr{
-	background-color:#acffac;
+
+.estDec {
+	background-color: #ff8686;
 }
-.estMod{
-	background-color:#ffff8e;
+
+.estAgr {
+	background-color: #acffac;
 }
+
+.estMod {
+	background-color: #ffff8e;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+	/* display: none; <- Crashes Chrome on hover */
+	-webkit-appearance: none;
+	margin: 0;
+	/* <-- Apparently some margin are still there even though it's hidden */
 }
-.table{
+
+.table {
 	margin-bottom: 0;
+	margin-left: auto;
+    margin-right: auto;
 }
-tr.header, td.header {
+.chapter-create-col{
+	width:50%;
+}
+
+.chapter-header {
 	border: 1px solid #d4d4d4;
 	background-color: #FDEADA;
-	font-style:oblique;
+	font-style: oblique;
 	font-weight: bold;
 	line-height: 20px;
-	
 }
-td.hdr{
+
+td.hdr {
 	background-color: #D9D9D9;
 	text-align: center;
 }
-td.type{
-	width:7%;
+
+td.type {
+	width: 7%;
 }
- 
-input[type="text"].f {
-    width: 80px;
+
+.amount input[type="text"] {
+	width: 85px;
 }
+
 .description {
 	width: 55%;
 }
-.address{
-	width:25%;
+
+.address {
+	width: 25%;
 }
 
 .amount {
-	width: 12%;
+	width: 8%;
 }
 
 .price {
@@ -71,11 +95,12 @@ td {
 	border: 1px solid #d4d4d4;
 	background-color: #F8F8F8;
 }
-th{
+
+th {
 	text-align: center;
 }
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th,
-	.table>thead>tr>td, .table>thead>tr>th {
-	padding: 2px;
-	vertical-align: middle;
+
+.red-line {
+	height: 6px;
+	background-color: #9B3A38
 }

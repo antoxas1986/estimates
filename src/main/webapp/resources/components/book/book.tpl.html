@@ -27,20 +27,20 @@
             <td class="hdr"></td>
         </tr>
         <tr>
-            <td colspan="8" style="height: 6px; background-color: #9B3A38"></td>
+            <td colspan="8" class="red-line"></td>
         </tr>
     </table>
     <table class="table" data-ng-repeat="chapter in vm.estimateForm">
-        <tr class="header">
+        <tr class="chapter-header">
             <th colspan="8">{{chapter.chapterName}}</th>
         </tr>
         <tr data-ng-repeat="item in chapter.tjList">
             <td class="description">{{$index + 1}}. {{item.workDescription}}</td>
             <td class="amount"><input type="text" data-ng-model="item.amount"></td>
-            <td class="price" align="right">{{item.price|currency:undefined:0}}</td>
+            <td class="price" align="right">${{item.price}}</td>
             <td class="unit">{{item.unitName}}</td>
-            <td class="minimum" align="right">{{item.minimumCharge|currency:undefined:0}}</td>
-            <td class="total">{{item.amount*item.price|currency:undefined:0}}</td>
+            <td class="minimum" align="right">${{item.minimumCharge}}</td>
+            <td class="total">${{item.amount*item.price}}</td>
             <td class="but"><button class="btn btn-danger" data-ng-click="vm.remove(item.id)">
 					<i class="glyphicon glyphicon-trash"></i></button></td>
             <td><input type="checkbox" checklist-model="vm.form.ids" checklist-value="item.id"></td>

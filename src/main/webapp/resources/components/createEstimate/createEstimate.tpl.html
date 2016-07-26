@@ -1,9 +1,9 @@
-<div data-ng-include="CEC.navBar"></div>
+<div data-ng-include="vm.navBar"></div>
 <div class="container">
     <form class="form-inline">
         <div class="form-gruop">
             <label for="customers"> Enter new customer or pick from drop
-				down menu:</label> <select class="form-control" ng-options="customer.name+' '+customer.lastName for customer in customers" data-ng-model="customer" id="customers"></select>
+				down menu:</label> <select class="form-control" ng-options="customer.name+' '+customer.lastName for customer in vm.customers" data-ng-model="vm.customer" id="customers"></select>
         </div>
     </form>
 
@@ -17,25 +17,25 @@
 						</h4></td>
                 </tr>
                 <tr>
-                    <td colspan="3" style="height: 6px; background-color: #9B3A38"></td>
+                    <td colspan="3" class="red-line"></td>
                 </tr>
-                <tr class="header">
+                <tr class="chapter-header">
                     <th colspan=3 align=center>Info:</th>
                     <tr>
-                        <td>First name: <input type="text" data-ng-model="customer.name" name="name" required></td>
-                        <td>Last name: <input type="text" data-ng-model="customer.lastName" name="lastName" required></td>
-                        <td>Phone number: <input type="text" maxlength="13" data-ng-model="customer.phoneNumber" required></td>
+                        <td>First name: <input type="text" data-ng-model="vm.customer.name" name="name" required></td>
+                        <td>Last name: <input type="text" data-ng-model="vm.customer.lastName" name="lastName" required></td>
+                        <td>Phone number: <input type="text" maxlength="13" data-ng-model="vm.customer.phoneNumber" required></td>
                     </tr>
                     <tr>
-                        <td colspan=2>Address: <input type="text" size="55" data-ng-model="customer.address" required></td>
-                        <td>Email: <input type="text" name="email" data-ng-model="customer.email"></td>
+                        <td colspan=2>Address: <input type="text" size="55" data-ng-model="vm.customer.address" required></td>
+                        <td>Email: <input type="text" name="email" data-ng-model="vm.customer.email"></td>
                     </tr>
                     <tr>
-                        <td align=right colspan="2" class="header">TOTAL PRICE: <br> DISCOUNT: <br> GRAND TOTAL: <br>
+                        <td align=right colspan="2" class="chapter-header">TOTAL PRICE: <br> DISCOUNT: <br> GRAND TOTAL: <br>
                         </td>
-                        <td class="header">${{customer.customerTotal}}<br> <input type="text" data-ng-model="customer.customerDiscount"> <br>
-                            <div ng-if="customer.Discount==0">${{customer.customerGrandTotal=customer.customerTotal}}</div>
-                            <div ng-if="customer.Discount!=0">${{customer.customerGrandTotal=customer.customerTotal-customer.customerDiscount}}</div>
+                        <td class="chapter-header">${{vm.customer.customerTotal}}<br> <input type="text" data-ng-model="vm.customer.customerDiscount"> <br>
+                            <div ng-if="customer.Discount==0">${{vm.customer.customerGrandTotal=customer.customerTotal}}</div>
+                            <div ng-if="customer.Discount!=0">${{vm.customer.customerGrandTotal=customer.customerTotal-customer.customerDiscount}}</div>
                         </td>
                     </tr>
                     <tr>
@@ -44,7 +44,7 @@
                                 Notes:<br>All building, plumbing, electrical materials and supplies included.<br> Homeowners provide:
                             </p>
                             <center>
-                                <textarea rows=5 cols=135 data-ng-model="customer.notes"></textarea>
+                                <textarea rows=5 cols=135 data-ng-model="vm.customer.notes"></textarea>
                             </center>
                         </td>
                     </tr>
@@ -54,14 +54,13 @@
         <form class="form-inline">
             <div class="form-group">
                 <label for="estimateTypes">Choose type of estimate</label>
-                <select id="estimateTypes" class="form-control" ng-options="type.name as type.name for type in CEC.estimateTypes" ng-model="customer.typeEstimate" ng-required="true"></select>
+                <select id="estimateTypes" class="form-control" ng-options="type.name as type.name for type in vm.estimateTypes" ng-model="vm.customer.typeEstimate" ng-required="true"></select>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-success form-control" data-ng-click="CEC.saveCustomer()" value="Save customer" />
+                <input type="submit" class="btn btn-success form-control" data-ng-click="vm.saveCustomer()" value="Save customer" />
             </div>
             <div class="form-group col-lg-offset-5">
-                <!-- 				 <input type="hidden" data-ng-model="customer.status='EC'"> -->
-                <button class="btn btn-success form-control" data-ng-click="CEC.saveEstimate()" ng-disabled="customer.id == null">Save
+                <button class="btn btn-success form-control" data-ng-click="vm.saveEstimate()" ng-disabled="vm.customer.id == null">Save
 					estimate</button>
             </div>
         </form>
@@ -73,22 +72,22 @@
     <hr class="col-lg-12">
     </br>
     <div class="col-lg-3">
-        <select class="form-control" ng-options="s as s for s in schemas" ng-model="name"></select>
+        <select class="form-control" ng-options="s as s for s in vm.schemas" ng-model="vm.name"></select>
     </div>
     <div class="col-lg-3">
-        <button class="btn btn-primary" data-ng-click="CEC.pull(name)">Choose
+        <button class="btn btn-primary" data-ng-click="vm.pull(vm.name)">Choose
 			Estimate Blank</button>
     </div>
 
     <div class="col-lg-3">
-        <button class="btn btn-primary" data-ng-click="CEC.count()">Count
+        <button class="btn btn-primary" data-ng-click="vm.count()">Count
 			chapters</button>
     </div>
     <hr class="col-lg-12">
     <br>
     <br>
 
-    <div data-ng-hide="estimateForm.length==null || estimateForm.length==''">
+    <div data-ng-hide="vm.estimateForm.length==null || vm.estimateForm.length==''">
         <table class="table">
             <tr>
                 <td class="description hdr"><em><strong>Work description</strong></em></td>
@@ -104,17 +103,17 @@
         </table>
 
         <form>
-            <table class="table" data-ng-repeat="chapter in estimateForm">
+            <table class="table" data-ng-repeat="chapter in vm.estimateForm">
 
-                <tr class="header">
-                    <th colspan="4"><button class="btn btn-default btn-sm" data-ng-click="isCollapsed = !isCollapsed">
-							<i class="glyphicon glyphicon-plus" ng-show="isCollapsed"></i> <i
-								class="glyphicon glyphicon-minus" ng-show="!isCollapsed"></i>
+                <tr class="chapter-header">
+                    <th colspan="4"><button class="btn btn-default btn-sm" data-ng-click="vm.isCollapsed = !vm.isCollapsed">
+							<i class="glyphicon glyphicon-plus" ng-show="vm.isCollapsed"></i> <i
+								class="glyphicon glyphicon-minus" ng-show="!vm.isCollapsed"></i>
 						</button>{{chapter.chapterName}}</th>
                     <th colspan="2">Total: ${{chapter.chapterCount}}</th>
                 </tr>
-                <tr data-ng-repeat="item in chapter.tjList" collapse="isCollapsed">
-                    <input type="hidden" data-ng-model="item.customerId = customer.id">
+                <tr data-ng-repeat="item in chapter.tjList" collapse="vm.isCollapsed">
+                    <input type="hidden" data-ng-model="item.customerId = vm.customer.id">
                     <td class="description">{{$index + 1}}. {{item.workDescription}}
                     </td>
                     <td class="amount"><input type="text" data-ng-model="item.amount"></td>
@@ -133,22 +132,6 @@
                             <td class="total" align="right" ng-if="item.total>item.minimumCharge">${{item.total}}</td>
                             <td style="display: none">{{item.customerTotal = item.total}}</td>
                 </tr>
-                <!-- 				<tr> -->
-                <!-- 				<td class="description"> -->
-                <!-- 						<input type="text" data-ng-model="item.workDescription"></td> -->
-                <!-- 					<td class="amount"><input type="text" -->
-                <!-- 						data-ng-model="item.amount"></td> -->
-                <!-- 					<td class="price" align="right"><input type="text" data-ng-model="item.price"></td> -->
-                <!-- 					<td class="unit"><input type="text" data-ng-model="item.unit"></td> -->
-                <!-- 					<td class="minimum" align="right"><input type="text" data-ng-model="item.minimumCharge"></td> -->
-                <!-- 					<td style="display: none">{{item.total = -->
-                <!-- 						item.amount*item.price}}</td> -->
-                <!-- 					<td class="total" align="right" ng-if="item.total==0">{{item.total}} -->
-                <!-- 					<td class="total" align="right" -->
-                <!-- 						ng-if="item.total<=item.minimumCharge && item.total!=0 ">${{item.total=item.minimumCharge}} -->
-                <!-- 					<td class="total" align="right" -->
-                <!-- 						ng-if="item.total>item.minimumCharge"><input type="text" data-ng-model="item.total"></td> -->
-                <!-- 				</tr> -->
             </table>
         </form>
     </div>

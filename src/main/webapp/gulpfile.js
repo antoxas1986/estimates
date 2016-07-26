@@ -1,3 +1,7 @@
+/*eslint no-undef: "error"*/
+/*eslint-env node*/
+/*eslint angular/typecheck-object: 0*/
+
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')({ lazy: true });
 var config = require('./gulp.config')();
@@ -6,35 +10,29 @@ var angularFileSort = require('gulp-angular-filesort');
 
 gulp.task('help', $.taskListing);
 
-gulp.task('default', ['help']);
-
-gulp.task('vet', function () {
-    log('Vet js files in project...');
-
-    return gulp
-        .src(config.alljs)
-        .pipe($.plumber())
-        .pipe($.jscs())
-        .pipe($.jshint())
-        .on('error', errorLoger)
-        .pipe($.jshint.reporter('jshint-stylish', { verbose: true }))
-        .pipe($.jshint.reporter('fail'));
+gulp.task('default', ['help'], function () {
+    log('**************************************************');
+    log('**************GULP TASK DESCRIPOTION**************');
+    log('**************************************************');
+    log('***** wiredep - wire all bower js and css    *****');
+    log('***** css - inject custom css                *****');
+    log('***** lint - check js code for errors        *****');
+    log('**************************************************');
 });
 
-gulp.task('wiredep', function () {
-    log('Wire up the bower css and js');
+gulp.task('wiredep', ['css'], function () {
+    log('Wire up the bower css and js...');
     var options = config.getWiredepDefaultOptions();
 
     return gulp
         .src(config.index)
         .pipe(wiredep(options))
-        .pipe($.inject(gulp.src(config.css)))
         .pipe($.inject(gulp.src(config.js).pipe(angularFileSort())))
         .pipe(gulp.dest(config.public));
 });
 
 gulp.task('css', function () {
-    log('Inject css');
+    log('Inject custom css...');
 
     return gulp
         .src(config.index)
@@ -43,10 +41,11 @@ gulp.task('css', function () {
 });
 
 gulp.task('lint', function () {
+    log('Linting js code...');
 
     return gulp.src(['resources/components/**/*.js'])
         .pipe($.eslint())
-        .pipe($.eslint.format())
+        .pipe($.eslint.format('table'))
         .pipe($.eslint.failAfterError());
 });
 
@@ -66,9 +65,3 @@ function log(msg) {
     }
 }
 
-function errorLoger(error) {
-    log('*** Start of Error ***');
-    log(error);
-    log('*** End of Error ***');
-    this.emit('end');
-}

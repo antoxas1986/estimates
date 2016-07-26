@@ -14,7 +14,7 @@
             },
             templateUrl: 'resources/components/createEstimate/createEstimate.tpl.html',
             controller: 'CreateEstimateController',
-            controllerAs: "CEC"
+            controllerAs: 'vm'
         });
     }
 } ());

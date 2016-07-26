@@ -17,6 +17,7 @@ import com.buildix.glorem.models.TypeJob;
 @Component
 public class ChapterDaoImpl implements ChapterDao  {
 
+	private static final String DELETE_ITEM_CHAPTER = "delete from typeJob where chapterId=?";
 	private JdbcTemplate jdbcTemplate;
 	private static final String GET_ALL_CHAPTER = "select c.id, c.name from chapter as c order by id";
 	private static final String GET_CHAPTER_BY_CHAPTER_ID_QUERY = "select c.id, c.name from chapter as c where c.id = ? ";
@@ -62,6 +63,7 @@ public class ChapterDaoImpl implements ChapterDao  {
 	@Override
 	public void deleteChapter(Integer id) {
 		//List<TypeJob> list = tjDao.getTypeJobByChapterName(name)
+		jdbcTemplate.update(DELETE_ITEM_CHAPTER, id);
 		jdbcTemplate.update(DELETE_CHAPTER, id);
 		
 	}

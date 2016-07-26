@@ -14,6 +14,7 @@
 		vm.estimateForm = {};
 		vm.createSchema = createSchema;
 		vm.form = { ids: [] };
+		vm.units =[];
 
 		activate();
 
@@ -28,6 +29,10 @@
 
 			bookService.getEstimateForm.get().$promise.then(function (data) {
 				vm.estimateForm = data;
+			});
+
+			bookService.getUnits.get().$promise.then(function (data) {
+				vm.units = data;
 			});
 		}
 

@@ -15,7 +15,7 @@
             },
             templateUrl: 'resources/components/admin/admin.tpl.html',
             controller: 'AdminController',
-            controllerAs: "AC"
+            controllerAs: 'vm'
         });
         
     }

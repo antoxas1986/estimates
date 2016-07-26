@@ -22,7 +22,7 @@
 				'get':{method: 'GET', isArray:true}
 			}),
 			
-		}
+		};
 	}
 	
 }());

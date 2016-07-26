@@ -16,6 +16,12 @@
 			}),
 			saveForm: $resource('/saveForm', {}, {
 				'save': { method: 'POST' }
+			}),
+			getUnits: $resource('/units', {}, {
+				'get': { method: 'GET', isArray: true }
+			}),
+			updateItem: $resource('/updateItem', {}, {
+				'put': { method: 'PUT' }
 			})
 
 		};

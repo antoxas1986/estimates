@@ -3,46 +3,48 @@
 		.module('glorem')
 		.controller('CreateEstimateController', CreateEstimateController);
 
-	CreateEstimateController.$inject = ['$scope', 'createEstimateService', '$location'];
+	CreateEstimateController.$inject = ['createEstimateService', '$window'];
 
-	function CreateEstimateController($scope, ceService, $location) {
+	function CreateEstimateController(ceService, $window) {
 
-		var CEC = this;
-		CEC.navBar = 'resources/share/navBar.html';
-		CEC.saveEstimate = saveEstimate;
-		CEC.saveCustomer = saveCustomer;
-		CEC.estimateTypes = getEstimateTypes();
-		CEC.count = count;
-		CEC.pull = pull;
+		var vm = this;
+		vm.navBar = 'resources/share/navBar.html';
+		vm.saveEstimate = saveEstimate;
+		vm.saveCustomer = saveCustomer;
+		vm.estimateTypes = getEstimateTypes();
+		vm.count = count;
+		vm.pull = pull;
+		vm.name = '';
 
 		activate();
 
-		$scope.customers = [];
-		$scope.customer = {};
-		$scope.isCollapsed = false;
-		$scope.estimateForm = [];
+		vm.customers = [];
+		vm.customer = {};
+		vm.isCollapsed = false;
+		vm.estimateForm = [];
+		vm.schemas = [];
 
-		return CEC;
+		return vm;
 
 		function activate() {
 			ceService.customerCC.get().$promise.then(function (data) {
-				$scope.customers = data;
+				vm.customers = data;
 			});
 			ceService.getSchemaNameList.get().$promise.then(function (data) {
-				$scope.schemas = data;
+				vm.schemas = data;
 			});
 
 		}
 
 		function getEstimateTypes() {
 			var estimateTypes = [
-				{ name: "Basement" },
-				{ name: "Kitchen" },
-				{ name: "Bathroom" },
-				{ name: "Master Bathroom" },
-				{ name: "Living" },
-				{ name: "Addition" },
-				{ name: "Other" }
+				{ name: 'Basement' },
+				{ name: 'Kitchen' },
+				{ name: 'Bathroom' },
+				{ name: 'Master Bathroom' },
+				{ name: 'Living' },
+				{ name: 'Addition' },
+				{ name: 'Other' }
 			];
 
 			return estimateTypes;
@@ -50,67 +52,62 @@
 
 		function pull(name) {
 			ceService.getEstimateForm.get({ name: name }).$promise.then(function (data) {
-				$scope.estimateForm = data;
+				vm.estimateForm = data;
 			});
 		}
 
 		function saveEstimate() {
 			var customerTotal = 0;
-			for (var i = 0; i < $scope.estimateForm.length; i++) {
-				var list = $scope.estimateForm[i].tjList;
+			for (var i = 0; i < vm.estimateForm.length; i++) {
+				var list = vm.estimateForm[i].tjList;
 				var total = 0;
 				for (var j = 0; j < list.length; j++) {
 					total = total + list[j].total * 1;
 				}
-				$scope.estimateForm[i].chapterCount = total;
+				vm.estimateForm[i].chapterCount = total;
 				customerTotal += total;
 			}
-			$scope.customer.customerTotal = customerTotal;
-			$scope.customer.customerGrandTotal = customerTotal
-				- $scope.customer.customerDiscount
+			vm.customer.customerTotal = customerTotal;
+			vm.customer.customerGrandTotal = customerTotal
+				- vm.customer.customerDiscount;
 
-			$scope.customer.status = "EC";
-			ceService.customer.save($scope.customer,
-				function () { });
-			ceService.saveEstimate
-				.save(
-				$scope.estimateForm,
-				function () {
-					window.location.href = "/estimates.html";
-				});
+			vm.customer.status = 'EC';
+			ceService.customer.save(vm.customer, function () { });
+			ceService.saveEstimate.save(vm.estimateForm, function () {
+				$window.location.href = '/estimates.html';
+			});
 		}
 
 		function saveCustomer() {
-			$scope.customer.status = "CC";
-			$scope.customer.condition = "customer";
-			$scope.customer.date = new Date;
-			console.log($scope.customer.date);
+			vm.customer.status = 'CC';
+			vm.customer.condition = 'customer';
+			vm.customer.date = new Date;
 			ceService.customer
 				.save(
-				$scope.customer,
+				vm.customer,
 				function () {
-					alert("Customer saved");
+					alert('Customer saved');
 					ceService.customerCC
 						.get().$promise
 						.then(function (
 							data) {
-							$scope.customers = data;
+							vm.customers = data;
 						});
 				});
 		}
 
 		function count() {
 			var customerTotal = 0;
-			for (var i = 0; i < $scope.estimateForm.length; i++) {
-				var list = $scope.estimateForm[i].tjList;
+			for (var i = 0; i < vm.estimateForm.length; i++) {
+				var list = vm.estimateForm[i].tjList;
 				var total = 0;
 				for (var j = 0; j < list.length; j++) {
 					total = total + list[j].total * 1;
 				}
-				$scope.estimateForm[i].chapterCount = total;
+				vm.estimateForm[i].chapterCount = total;
 				customerTotal += total;
 			}
-			$scope.customer.customerTotal = customerTotal;
+			vm.customer.customerTotal = customerTotal;
 		}
 
 	}

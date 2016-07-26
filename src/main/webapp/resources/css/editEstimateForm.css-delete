@@ -47,9 +47,9 @@ td.hdr{
 .customerTotal{
 	width:7%;
 }
-input[type="text"] {
+/*input[type="text"] {
     width: 80px;
-}
+}*/
 td {
 	border: 1px solid #d4d4d4;
 	background-color: #F8F8F8;

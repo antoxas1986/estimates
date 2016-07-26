@@ -15,7 +15,7 @@
 			getCustomer : $resource('/customer/:id',{id:'@id'},{
 				'get':{method:'GET'}
 			})			
-		}
+		};
 	}
 	
 }());

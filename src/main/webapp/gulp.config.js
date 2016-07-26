@@ -1,4 +1,5 @@
-
+/*eslint no-undef: "error"*/
+/*eslint-env node*/
 module.exports = function () {
     var components = './resources/components/';
     var resources = './resources/';

@@ -3,27 +3,27 @@
     <center>
         <h1>Chapter creater</h1>
     </center>
-    <table>
-        <tr>
-            <th>New chapters</th>
-            <th>Existing chapters</th>
+    <table class="table">
+        <tr >
+            <th class="chapter-header">New chapters</th>
+            <th class="chapter-header">Existing chapters</th>
         </tr>
         <tr>
-            <td class="well">
+            <td class="well chapter-create-col">
                 <button class="btn btn-primary" ng-click="vm.add()">Add	chapter</button>
                 <div data-ng-repeat="chapter in vm.chapters track by $index">
                     <div class="form-inline">
-                        <input type="text" class="form-control" ng-model="chapter.name" />
+                        <input type="text" class="form-control" ng-model="chapter.name" />&nbsp;
                         <button class="btn btn-danger" ng-click="vm.remove($index)">
 								<i class="glyphicon glyphicon-remove"></i>
 							</button>
                     </div>
                 </div>
             </td>
-            <td class="well">
+            <td class="well chapter-create-col">
                 <div data-ng-repeat="chap in vm.chaps">
                     <a ng-click="vm.update(chap)">{{chap.name}}</a>
-                    <span style="float: right">
+                    <span style="float: right">&nbsp;
                         <button class="btn btn-danger btn-xs"
 								ng-click="vm.deleteDB(chap.id)">
 								<i class="glyphicon glyphicon-trash"></i>

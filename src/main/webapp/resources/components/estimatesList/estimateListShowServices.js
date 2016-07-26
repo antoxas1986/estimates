@@ -17,7 +17,7 @@
 			sendEstimate: $resource('/sendEstimate/:id',{id:'@id'},{
 				'get': {method:'GET'}
 			})
-		}
+		};
 	}
 	
 }());

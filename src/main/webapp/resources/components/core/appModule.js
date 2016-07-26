@@ -12,7 +12,7 @@
 		'directives',
 		'services',
 		'ngAnimate',
-		'ngTable',
+		// 'ngTable',
 		'angular-loading-bar',
 		'ngResource',
 		'ui.bootstrap'

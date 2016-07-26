@@ -3,11 +3,11 @@
 		.module('glorem')
 		.controller('AdminController', AdminController);
 
-		AdminController.$ingect = ['$scope', 'adminService', '$location']; 
+		AdminController.$ingect = ['$scope']; 
 		
-		function AdminController($scope, adminService, $location) {
-			$scope.navBar = {
-				url: 'resources/share/navBar.html'
-			};
+		function AdminController() {
+			var vm = this;
+			vm.navBar = 'resources/share/navBar.html';
+			return vm;
 		}
 } ());
