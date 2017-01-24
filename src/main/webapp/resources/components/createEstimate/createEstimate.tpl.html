@@ -1,20 +1,35 @@
 <div data-ng-include="vm.navBar"></div>
 <div class="container">
+    <hr class="col-lg-12">
+    <div>
+        <p class="instructions">
+            <span class="instructions-number">1</span> Select customer name from drop down below. If you did not see his/her
+            name go to next step.
+        </p>
+    </div>
     <form class="form-inline">
-        <div class="form-gruop">
-            <label for="customers"> Enter new customer or pick from drop
-				down menu:</label> <select class="form-control" ng-options="customer.name+' '+customer.lastName for customer in vm.customers" data-ng-model="vm.customer" id="customers"></select>
+        <div class="customer-selection">
+            <label for="customers"> Select customer:</label>
+            <select class="form-control" ng-options="customer.name+' '+customer.lastName for customer in vm.customers" data-ng-model="vm.customer"
+                id="customers"></select>
         </div>
     </form>
-
+    <hr class="col-lg-12">
+    <div>
+        <p class="instructions">
+            <span class="instructions-number">2</span> If you did not see his/her name in the drop down start create new
+            customer in this section.
+        </p>
+    </div>
     <div class="col-md-12 ">
         <form name="myForm" novalidate>
             <table class="table">
                 <tr>
                     <td colspan=3 align=center class="hdr">
                         <h4>
-							<strong>PROPOSAL</strong>
-						</h4></td>
+                            <strong>PROPOSAL</strong>
+                        </h4>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="3" class="red-line"></td>
@@ -33,15 +48,16 @@
                     <tr>
                         <td align=right colspan="2" class="chapter-header">TOTAL PRICE: <br> DISCOUNT: <br> GRAND TOTAL: <br>
                         </td>
-                        <td class="chapter-header">${{vm.customer.customerTotal}}<br> <input type="text" data-ng-model="vm.customer.customerDiscount"> <br>
-                            <div ng-if="customer.Discount==0">${{vm.customer.customerGrandTotal=customer.customerTotal}}</div>
-                            <div ng-if="customer.Discount!=0">${{vm.customer.customerGrandTotal=customer.customerTotal-customer.customerDiscount}}</div>
+                        <td class="chapter-header">${{vm.customer.customerTotal}}<br> <input type="text" data-ng-model="vm.customer.customerDiscount">                            <br>
+                            <div ng-if="customer.Discount==0">${{vm.customer.customerGrandTotal = vm.customer.customerTotal}}</div>
+                            <div ng-if="customer.Discount!=0">${{vm.customer.customerGrandTotal = vm.customer.customerTotal-vm.customer.customerDiscount}}</div>
                         </td>
                     </tr>
                     <tr>
                         <td colspan=3>
                             <p>
-                                Notes:<br>All building, plumbing, electrical materials and supplies included.<br> Homeowners provide:
+                                Notes:<br>All building, plumbing, electrical materials and supplies included.<br> Homeowners
+                                provide:
                             </p>
                             <center>
                                 <textarea rows=5 cols=135 data-ng-model="vm.customer.notes"></textarea>
@@ -50,43 +66,46 @@
                     </tr>
             </table>
         </form>
-        <br/>
-        <form class="form-inline">
-            <div class="form-group">
-                <label for="estimateTypes">Choose type of estimate</label>
-                <select id="estimateTypes" class="form-control" ng-options="type.name as type.name for type in vm.estimateTypes" ng-model="vm.customer.typeEstimate" ng-required="true"></select>
-            </div>
-            <div class="form-group">
+    </div>
+    <br/>
+    <hr class="col-lg-12">
+    <div>
+        <p class="instructions">
+            <span class="instructions-number">3</span> Please do not forget to select type of estimate before saving a customer.
+        </p>
+    </div>
+    <br/>
+    <form class="form-inline">
+        <div class="customer-selection">
+            <label for="estimateTypes">Select type of estimate</label>
+            <select id="estimateTypes" class="form-control" ng-options="type.name as type.name for type in vm.estimateTypes" ng-model="vm.customer.typeEstimate"
+                ng-required="true"></select>
                 <input type="submit" class="btn btn-success form-control" data-ng-click="vm.saveCustomer()" value="Save customer" />
-            </div>
-            <div class="form-group col-lg-offset-5">
-                <button class="btn btn-success form-control" data-ng-click="vm.saveEstimate()" ng-disabled="vm.customer.id == null">Save
-					estimate</button>
-            </div>
-        </form>
-
-
-
-    </div>
+                <button class="btn btn-success pull-right" data-ng-click="vm.saveEstimate()" ng-disabled="vm.customer.id == null">Save estimate</button>
+        </div>
+    </form>
+    </br>
     </br>
     <hr class="col-lg-12">
-    </br>
-    <div class="col-lg-3">
-        <select class="form-control" ng-options="s as s for s in vm.schemas" ng-model="vm.name"></select>
+    <div>
+        <p class="instructions">
+            <span class="instructions-number">4</span> Now you are ready to select estimate template and load it from database.
+            Please make sure you have customer selected in a table above, if not go to step 1. At any time you can click
+            "Count chapters" button to see total amount for each chapter and total price in a table above. When you are ready
+            with estimate, you can save estimate by clicking "Save estimate" button. Later you can modify this estimate from
+            Estimates -> Current estimates link on navigation bar.
+        </p>
     </div>
-    <div class="col-lg-3">
-        <button class="btn btn-primary" data-ng-click="vm.pull(vm.name)">Choose
-			Estimate Blank</button>
-    </div>
-
-    <div class="col-lg-3">
-        <button class="btn btn-primary" data-ng-click="vm.count()">Count
-			chapters</button>
-    </div>
+    <form class="form-inline">
+       <div class="customer-selection">
+            <label for="estimateTypes">Select template:</label>
+            <select id="estimateTemplate" class="form-control" ng-options="s as s for s in vm.schemas" ng-model="vm.name"></select>
+            <button class="btn btn-primary" data-ng-click="vm.pull(vm.name)">Load Estimate Blank</button>
+            <button class="btn btn-primary pull-right" data-ng-click="vm.count()">Count chapters</button>
+        </div>
+    </form>
     <hr class="col-lg-12">
     <br>
-    <br>
-
     <div data-ng-hide="vm.estimateForm.length==null || vm.estimateForm.length==''">
         <table class="table">
             <tr>
@@ -101,10 +120,8 @@
                 <td colspan="6" style="height: 6px; background-color: #9B3A38"></td>
             </tr>
         </table>
-
         <form>
             <table class="table" data-ng-repeat="chapter in vm.estimateForm">
-
                 <tr class="chapter-header">
                     <th colspan="4"><button class="btn btn-default btn-sm" data-ng-click="vm.isCollapsed = !vm.isCollapsed">
 							<i class="glyphicon glyphicon-plus" ng-show="vm.isCollapsed"></i> <i
@@ -122,13 +139,8 @@
                     <td class="minimum" align="right">${{item.minimumCharge}}</td>
                     <td style="display: none">{{item.total = item.amount*item.price}}
                     </td>
-
                     <td class="total" align="right" ng-if="item.total==0">{{item.total}}
-
-
                         <td class="total" align="right" ng-if="item.total<=item.minimumCharge && item.total!=0 ">${{item.total=item.minimumCharge}}
-
-
                             <td class="total" align="right" ng-if="item.total>item.minimumCharge">${{item.total}}</td>
                             <td style="display: none">{{item.customerTotal = item.total}}</td>
                 </tr>

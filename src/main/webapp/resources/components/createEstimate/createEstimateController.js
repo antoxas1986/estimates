@@ -3,12 +3,12 @@
 		.module('glorem')
 		.controller('CreateEstimateController', CreateEstimateController);
 
-	CreateEstimateController.$inject = ['createEstimateService', '$window'];
+	CreateEstimateController.$inject = ['createEstimateService', '$state'];
 
-	function CreateEstimateController(ceService, $window) {
+	function CreateEstimateController(ceService, $state) {
 
 		var vm = this;
-		vm.navBar = 'resources/share/navBar.html';
+		vm.navBar = '/resources/components/share/navBar.html';
 		vm.saveEstimate = saveEstimate;
 		vm.saveCustomer = saveCustomer;
 		vm.estimateTypes = getEstimateTypes();
@@ -37,21 +37,36 @@
 		}
 
 		function getEstimateTypes() {
-			var estimateTypes = [
-				{ name: 'Basement' },
-				{ name: 'Kitchen' },
-				{ name: 'Bathroom' },
-				{ name: 'Master Bathroom' },
-				{ name: 'Living' },
-				{ name: 'Addition' },
-				{ name: 'Other' }
+			var estimateTypes = [{
+					name: 'Basement'
+				},
+				{
+					name: 'Kitchen'
+				},
+				{
+					name: 'Bathroom'
+				},
+				{
+					name: 'Master Bathroom'
+				},
+				{
+					name: 'Living'
+				},
+				{
+					name: 'Addition'
+				},
+				{
+					name: 'Other'
+				}
 			];
 
 			return estimateTypes;
 		}
 
 		function pull(name) {
-			ceService.getEstimateForm.get({ name: name }).$promise.then(function (data) {
+			ceService.getEstimateForm.get({
+				name: name
+			}).$promise.then(function (data) {
 				vm.estimateForm = data;
 			});
 		}
@@ -68,13 +83,13 @@
 				customerTotal += total;
 			}
 			vm.customer.customerTotal = customerTotal;
-			vm.customer.customerGrandTotal = customerTotal
-				- vm.customer.customerDiscount;
+			vm.customer.customerGrandTotal = customerTotal -
+				vm.customer.customerDiscount;
 
 			vm.customer.status = 'EC';
-			ceService.customer.save(vm.customer, function () { });
+			ceService.customer.save(vm.customer, function () {});
 			ceService.saveEstimate.save(vm.estimateForm, function () {
-				$window.location.href = '/estimates.html';
+				$state.go('estimates');
 			});
 		}
 
@@ -82,18 +97,12 @@
 			vm.customer.status = 'CC';
 			vm.customer.condition = 'customer';
 			vm.customer.date = new Date;
-			ceService.customer
-				.save(
-				vm.customer,
-				function () {
-					alert('Customer saved');
-					ceService.customerCC
-						.get().$promise
-						.then(function (
-							data) {
-							vm.customers = data;
-						});
+			ceService.customer.save(vm.customer, function () {
+				alert('Customer saved');
+				ceService.customerCC.get().$promise.then(function (data) {
+					vm.customers = data;
 				});
+			});
 		}
 
 		function count() {
@@ -111,4 +120,4 @@
 		}
 
 	}
-} ());
+}());

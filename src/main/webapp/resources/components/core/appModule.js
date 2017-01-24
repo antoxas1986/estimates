@@ -16,5 +16,6 @@
 		'angular-loading-bar',
 		'ngResource',
 		'ui.bootstrap'
-	]);
+	])
+	.constant('NAV_BAR','/resources/share/navBar.html');
 } ());

@@ -13,7 +13,7 @@
             data: {
                 roles: ['ROLE_ADMIN']
             },
-            templateUrl: 'resources/components/admin/admin.tpl.html',
+            templateUrl: '/resources/components/admin/admin.tpl.html',
             controller: 'AdminController',
             controllerAs: 'vm'
         });

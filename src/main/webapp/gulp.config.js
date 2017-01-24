@@ -3,13 +3,15 @@
 module.exports = function () {
     var components = './resources/components/';
     var resources = './resources/';
-    var public = './public/';
+    var public = './';
+    
 
     var config = {
         alljs: [
             components + '**/*.js',
             './*.js'
         ],
+        build: '../resources/static/',
         bower: {
             json: require('./bower.json'),
             directory: './bower_components',
@@ -18,11 +20,23 @@ module.exports = function () {
         css:[
             resources + '**/*.css'
         ],
-        index: './public/index.html',
+        clean: ['index.html','./resources/components/angularTemplates.js', './../resources/static/img/', './../resources/static/js/', './../resources/static/styles/', './../resources/static/index.html'],
+        index: 'index.html',
+        template: './public/index.html',
         js: [
             components + '**/*.js'
         ],
-        public: public
+        public: public,
+        components: components,
+        htmlTemplates: components + '**/*.html',
+        templateCache: {
+            file: 'angularTemplates.js',
+            options:{
+                module: 'glorem',
+                standAlone: false,
+                root: '/resources/components/'
+            }
+        }
     };
 
     config.getWiredepDefaultOptions = function () {

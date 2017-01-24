@@ -3,13 +3,12 @@
 		.module('glorem')
 		.controller('EstimatesListController', EstimatesListController);
 
-	EstimatesListController.$inject = ['$scope', 'estimateListShowService', '$location', '$rootScope', '$window'];
+	EstimatesListController.$inject = ['$state', 'estimateListService', '$location', '$rootScope', '$window'];
 
-	function EstimatesListController($scope, estimateListShowService, $location, $rootScope, $window) {
+	function EstimatesListController($state, estimateListService, $location, $rootScope, $window) {
 
 		var vm = this;
-		vm.navBar = 'resources/share/navBar.html';
-		vm.editEstimate = editEstimate;
+		vm.navBar = '/resources/components/share/navBar.html';
 		vm.remove = remove;
 		vm.sendEstimate = sendEstimate;
 		vm.estimates = [];
@@ -18,27 +17,28 @@
 
 		return vm;
 
-		function editEstimate(id) {
-			$window.location.href = '/editCustomerEstimate' + id;
-		}
-
-		function remove(id) {
-			var deleteCustomer = $window.confirm('Are you shure you want to DELETE CUSTOMER');
+		function remove(estimate) {
+			var deleteCustomer = $window.confirm('Are you shure you want to delete ' + estimate.name + ' ' + estimate.lastName + ' estimate');
 			if (deleteCustomer) {
-				estimateListShowService.customer.remove({ id: id }, function () {
-					$window.location.href = '/estimates';
+				estimateListService.customer.remove({
+					id: estimate.id
+				}, function () {
+					vm.estimates.splice(vm.estimates.indexOf(estimate), 1);
+					$state.go('estimates');
 				});
 			}
 		}
 
 		function sendEstimate(id) {
-			estimateListShowService.sendEstimate.get({id: id}).$promise.then(function () {
+			estimateListService.sendEstimate.get({
+				id: id
+			}).$promise.then(function () {
 				alert('Estimate send. Thank you.');
 			});
 		}
 
 		function activate() {
-			estimateListShowService.customer.get().$promise.then(function (data) {
+			estimateListService.customer.get().$promise.then(function (data) {
 				vm.estimates = data;
 			});
 		}
@@ -85,4 +85,4 @@
 		// 
 
 	}
-} ());
+}());

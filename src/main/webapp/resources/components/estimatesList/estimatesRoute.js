@@ -12,7 +12,7 @@
             data: {
                 roles: ['ROLE_ADMIN']
             },
-            templateUrl: 'resources/components/estimateListShow/estimatesList.tpl.html',
+            templateUrl: '/resources/components/estimatesList/estimatesList.tpl.html',
             controller: 'EstimatesListController',
             controllerAs: 'vm'
         });

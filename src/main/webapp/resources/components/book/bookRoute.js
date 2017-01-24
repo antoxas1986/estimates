@@ -12,7 +12,7 @@
             data: {
                 roles: ['ROLE_ADMIN']
             },
-            templateUrl: 'resources/components/book/book.tpl.html',
+            templateUrl: '/resources/components/book/book.tpl.html',
             controller: 'BookController',
             controllerAs: 'vm'
         });

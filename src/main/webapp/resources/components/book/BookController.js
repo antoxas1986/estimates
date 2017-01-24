@@ -7,7 +7,7 @@
 
 	function BookController($state, bookService, $location, $window) {
 		var vm = this;
-		vm.navBar = 'resources/share/navBar.html';
+		vm.navBar = '/resources/components/share/navBar.html';
 		vm.help = help;
 		vm.remove = remove;
 		vm.items = {};
@@ -40,7 +40,8 @@
 			var deleteItem = $window.confirm('Are you sure you want to delete?');
 			if (deleteItem) {
 				bookService.item.remove({ itemId: itemId }, function () {
-					$window.location.href = '/estimateForm.html';
+					activate();
+					$state.go('book');
 				});
 			}
 		}

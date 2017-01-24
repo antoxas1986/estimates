@@ -1,5 +1,5 @@
 (function(){
-	angular.module('services').factory('estimateListShowService', elsService);
+	angular.module('services').factory('estimateListService', elsService);
 	elsService.$inject = ['$http','$rootScope','$resource'];
 	function elsService($http, $rootScope, $resource){
 		return {

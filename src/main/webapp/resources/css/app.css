@@ -1,0 +1,16 @@
+.instructions {
+    font-weight: 600;
+    padding-left: 50px;
+}
+
+.instructions-number {
+    font-size: 25px;
+    padding: 5px 12px 5px 12px;
+    border-radius: 50%;
+    background-color: grey;
+    margin-right: 5px;
+}
+
+.customer-selection {
+    padding-left: 95px;
+}

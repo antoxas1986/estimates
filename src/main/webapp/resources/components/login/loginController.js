@@ -17,20 +17,22 @@
 		return vm;
 
 		function login(user) {
-			var creds = 'username='+user.username+'&'+'password='+ user.password;
+			var creds = 'username=' + user.username + '&' + 'password=' + user.password;
 			$http.post('/login', creds, {
-				headers: { 'content-type': 'application/x-www-form-urlencoded' }
-			}).success(function (data) {
-				if (data === true) {
-					$http.post('/principal').success(function (data) {
-						principal.authenticate(data);
+				headers: {
+					'content-type': 'application/x-www-form-urlencoded'
+				}
+			}).then(function (data) {
+				if (data.data === true) {
+					$http.post('/principal').then(function (data) {
+						principal.authenticate(data.data);
 						if ($scope.returnToState) $state.go($scope.returnToState.name, $scope.returnToStateParams);
 						$state.go('afterAuth');
 					});
 				} else {
 					vm.error = 'Wrong username or password';
 				}
-			}).error(function (xhr) {
+			}).catch(function (xhr) {
 				vm.error = xhr.responseText;
 			});
 		}
@@ -56,4 +58,4 @@
 			$timeout(tick, tickInterval);
 		}
 	}
-} ());
+}());

@@ -14,7 +14,7 @@
 		vm.chapter = {};
 
 
-		vm.navBar = 'resources/share/navBar.html';
+		vm.navBar = '/resources/components/share/navBar.html';
 		vm.removeFromItem = removeFromItem;
 		vm.createChapter = createChapter;
 		vm.add = add;
@@ -41,7 +41,7 @@
 
 		function chapCreater(chapter) {
 			vm.chaps.push({
-				chapterName: chapter.name,
+				chapterName: vm.chapter.name,
 				workDescription: '',
 				price: '',
 				unitName: '',
@@ -57,9 +57,7 @@
 		}
 		function save(chaps) {
 			itemService.saveChaps.save(chaps, function () {
-				
 				$state.go('book');
-				//$window.location.href = '/estimateForm.html';
 			});
 		}
 	}

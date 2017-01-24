@@ -53,12 +53,12 @@
 
                 // otherwise, retrieve the identity data from the server, update the identity object, and then resolve.
                 $http.post('/principal', { ignoreErrors: true })
-                    .success(function (data) {
-                        _identity = data;
+                    .then(function (data) {
+                        _identity = data.data;
                         _authenticated = true;
                         deferred.resolve(_identity);
                     })
-                    .error(function () {
+                    .catch(function () {
                         _identity = null;
                         _authenticated = false;
                         deferred.resolve(_identity);

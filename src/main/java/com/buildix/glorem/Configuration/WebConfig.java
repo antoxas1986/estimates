@@ -11,20 +11,20 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 /**
  * Created by AntonK on 7/15/2016.
  */
-@Configuration
-@EnableWebMvc
-public class WebConfig extends WebMvcConfigurerAdapter {
-    @Bean
-    public ViewResolver getViewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/public/");
-        resolver.setSuffix(".html");
-        return resolver;
-    }
-
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
-
-}
+//@Configuration
+//@EnableWebMvc
+//public class WebConfig extends WebMvcConfigurerAdapter {
+////    @Bean
+////    public ViewResolver getViewResolver() {
+////        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+////        //resolver.setPrefix("/public/");
+////        resolver.setSuffix(".html");
+////        return resolver;
+////    }
+//
+//    @Override
+//    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+//        configurer.enable();
+//    }
+//
+//}

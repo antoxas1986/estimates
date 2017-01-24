@@ -9,7 +9,7 @@
 
 
 		var vm = this;
-		vm.navBar = 'resources/share/navBar.html';
+		vm.navBar = '/resources/components/share/navBar.html';
 		vm.chapter = {};
 		vm.chapters = [];
 		vm.chaps = [];

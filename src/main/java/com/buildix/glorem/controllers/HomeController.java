@@ -56,7 +56,7 @@ public class HomeController {
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public String main() {
         logger.info("Serving index page");
-        return "index";
+        return "index.html";
     }
 
     @Secured(ROLE_ADMIN)

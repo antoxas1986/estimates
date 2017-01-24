@@ -6,7 +6,7 @@
     runApp.$inject = ['$rootScope', '$state', '$stateParams', 'authorization', 'principal','helpers'];
 
     function runApp($rootScope, $state, $stateParams, authorization, principal, helpers) {
-        $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+        var unregister = $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
 

@@ -12,7 +12,7 @@
             data: {
                 roles: ['ROLE_ADMIN']
             },
-            templateUrl: 'resources/components/chapter/chapter.tpl.html',
+            templateUrl: '/resources/components/chapter/chapter.tpl.html',
             controller: 'ChapterController',
             controllerAs: 'vm'
         });
