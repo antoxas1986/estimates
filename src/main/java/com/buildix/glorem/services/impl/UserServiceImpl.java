@@ -1,6 +1,7 @@
 package com.buildix.glorem.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,6 +63,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean validateUser(UserCred userCred) throws Exception {
 		return userDao.validateUser(userCred);
+	}
+
+	@Override
+	public Optional<User> customerLookup(String phone) {
+		return userDao.customerLookup(phone);
 	}
 
 }

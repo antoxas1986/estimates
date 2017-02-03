@@ -28,6 +28,7 @@ public class TypeJobDaoImpl implements TypeJobDao {
 	private static final String GET_TYPEJOB_BY_CUSTOMERID = "select t.id, c.name, t.workDescription, t.price, t.unitName, t.minimumCharge, t.amount, t.total, t.customerId,t.customerAmount,t.customerTotal from customerTypeJob as t inner join chapter as c on t.chapterId=c.id where t.customerId = ?";
 	private static final String UPDATE_CUSTOMER_TYPE_JOB = "update customerTypeJob set chapterId=?,workDescription=?,price=?,unitName=?,minimumCharge=?,amount=?,total=?,customerId=?, customerAmount=?,customerTotal=? where id=?;";
 	private static final String GET_CHAPTER_BY_NAME = "select * from chapter where name = ?";
+	private static final String UPDATE_TYPE_JOB = "update typeJob set chapterId=?,workDescription=?,price=?,unitName=?,minimumCharge=?,amount=?,total=?,customerId=?, customerAmount=?,customerTotal=? where id=?;";;
 	
 	/**
 	 * Sets the JdbcTemplate using the provided dataSource.
@@ -90,6 +91,15 @@ public class TypeJobDaoImpl implements TypeJobDao {
 		jdbcTemplate.update(UPDATE_CUSTOMER_TYPE_JOB, chap.getId(), typeJob.getWorkDescription(),
 				typeJob.getPrice(), typeJob.getUnitName(), typeJob.getMinimumCharge(), typeJob.getAmount(),
 				typeJob.getTotal(), typeJob.getCustomerId(),typeJob.getCustomerAmount(),typeJob.getCustomerTotal(),typeJob.getId());		
+	}
+
+	@Override
+	public void updateItem(TypeJob item) {
+		Chapter chap = jdbcTemplate.queryForObject(GET_CHAPTER_BY_NAME, new Object[] { item.getChapterName()}, new ChapterRowMapper());
+		jdbcTemplate.update(UPDATE_TYPE_JOB, chap.getId(), item.getWorkDescription(),
+				item.getPrice(), item.getUnitName(), item.getMinimumCharge(), item.getAmount(),
+				item.getTotal(), item.getCustomerId(),item.getCustomerAmount(),item.getCustomerTotal(),item.getId());
+		
 	}
 
 }

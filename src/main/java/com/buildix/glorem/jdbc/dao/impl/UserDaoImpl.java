@@ -1,6 +1,7 @@
 package com.buildix.glorem.jdbc.dao.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.sql.DataSource;
 
@@ -32,6 +33,7 @@ public class UserDaoImpl implements UserDao {
 	private static final String UPDATE_STATUS_ECM = "update user set status = 'ECM' where id = ?";
 	private static final String REMOVE_USER = "delete from user where id=?";
 	private static final String VALIDATE = "select * from userCred where userName=? and password=?";
+	private static final String CUSTOMER_LOOKUP = "select * from user where phoneNumber = ?";
 
 	/**
 	 * Sets the JdbcTemplate using the provided dataSource.
@@ -112,7 +114,6 @@ public class UserDaoImpl implements UserDao {
 			userC = jdbcTemplate.queryForObject(VALIDATE,
 					new Object[] { userCred.getUsername(), userCred.getPassword() }, new UserCredRowMapper());
 		} catch (DataAccessException e) {
-			e.printStackTrace();
 			throw new Exception("not found");
 			
 		}
@@ -121,6 +122,17 @@ public class UserDaoImpl implements UserDao {
 		} else {
 			return true;
 		}
+	}
+
+	@Override
+	public Optional<User> customerLookup(String phone) {
+		User user = null;
+		try{
+			user = jdbcTemplate.queryForObject(CUSTOMER_LOOKUP, new Object[] { phone }, new UserRowMapper());
+		}catch (DataAccessException e){
+			
+		}
+		return Optional.ofNullable(user);
 	}
 
 }

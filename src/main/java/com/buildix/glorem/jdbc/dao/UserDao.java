@@ -1,6 +1,7 @@
 package com.buildix.glorem.jdbc.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.buildix.glorem.models.User;
 import com.buildix.glorem.models.UserCred;
@@ -39,6 +40,8 @@ public interface UserDao {
 	void removeUserByUserId(Integer id);
 
 	boolean validateUser(UserCred userCred) throws Exception;
+
+	Optional<User> customerLookup(String phone);
 	
 
 }

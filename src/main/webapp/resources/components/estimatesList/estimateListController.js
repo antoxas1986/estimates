@@ -34,6 +34,11 @@
 				id: id
 			}).$promise.then(function () {
 				alert('Estimate send. Thank you.');
+				vm.estimates.forEach(function(element) {
+					if(element.id == id){
+						element.status = 'ES';
+					}	
+				});
 			});
 		}
 

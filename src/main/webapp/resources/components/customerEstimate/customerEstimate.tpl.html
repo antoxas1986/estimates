@@ -1,0 +1,114 @@
+<div class="container">
+	<center>
+		<h1>Customer estimate</h1>
+	</center>
+	<div class="notice">
+		Dear <strong>{{vm.customer.name}} {{vm.customer.lastName}}</strong>, you have <strong>60</strong> days from <strong>{{vm.customer.date}}</strong>		to Accept this estimate. Otherwise, estimate will expire and you will loose your perfect price and discount.
+	</div>
+	<table class="table">
+		<tr>
+			<td colspan=3 align=center class="hdr">
+				<h4>
+					<strong>PROPOSAL</strong>
+				</h4>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" style="height: 6px; background-color: #9B3A38"></td>
+		</tr>
+		<tr class="header">
+			<th colspan=3 align=center>Info:</th>
+			<tr>
+				<td>First name: <strong>{{vm.customer.name}}</strong></td>
+				<td>Last name: <strong>{{vm.customer.lastName}}</strong></td>
+				<td>Phone number: {{vm.customer.phoneNumber}}</td>
+			</tr>
+			<tr>
+				<td colspan=2>Address: {{vm.customer.address}}</td>
+				<td>Email: {{vm.customer.email}}</td>
+			</tr>
+			<tr>
+				<td align=right colspan="2" class="header">TOTAL PRICE: <br> DISCOUNT: <br> GRAND TOTAL: <br>
+				</td>
+				<td class="header">${{vm.customer.customerTotal}} <span class="customerChange" ng-show="vm.modify">/
+					${{vm.customer.updCustomerTotal}}</span><br> ${{vm.customer.customerDiscount}} <br>${{vm.customer.customerGrandTotal}}
+					<span class="customerChange" ng-show="vm.modify">/
+					${{vm.customer.updCustomerGrandTotal}}</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=3>
+					<p>
+						Notes:<br>All building, plumbing, electrical materials and supplies included.<br> <strong>Homeowners provide:</strong>
+					</p> {{vm.customer.notes}} <br /> <textarea rows=5 cols=100 data-ng-model="customer.updNotes" ng-show="vm.modify"></textarea></td>
+			</tr>
+	</table>
+	<div class="notice" ng-show="vm.modify">You could modify your estimate here. If you have different amount for any item in estimate, just enter numbers in "Customer
+		Amount" and click "RE-COUNT estimate" button to see your changes. When ready click "Submit modifyed estimate".
+	</div>
+	<hr class="col-lg-12">
+	<div>
+		<table class="table">
+			<tr>
+				<td class="description hdr"><em><strong>Work
+							description</strong></em></td>
+				<td class="amount hdr"><em><strong>Amount</strong></em></td>
+				<td class="price hdr"><em><strong>Price</strong></em></td>
+				<td class="unit hdr"><em><strong>Unit</strong></em></td>
+				<td class="minimum hdr"><em><strong>Minimum
+							charge</strong></em></td>
+				<td class="total hdr"><em><strong>Total</strong></em></td>
+				<td class="customerAmount hdr" ng-show="vm.modify"><em><strong>Customer
+							amount</strong></em></td>
+				<td class="CustomerTotal hdr" ng-show="vm.modify"><em><strong>Customer
+							total</strong></em></td>
+			</tr>
+			<tr>
+				<td colspan="8" style="height: 6px; background-color: #9B3A38"></td>
+			</tr>
+		</table>
+		<form>
+			<table class="table" data-ng-repeat="chapter in vm.estimateForm">
+				<tr class="header">
+					<th colspan="4" style="text-align: left"><button class="btn btn-default btn-sm" data-ng-click="isCollapsed = !isCollapsed">
+							<i class="fa fa-plus" ng-show="isCollapsed"></i> <i
+								class="fa fa-minus" ng-show="!isCollapsed"></i>
+						</button> {{chapter.chapterName}}</th>
+					<th class="hdrTotal" colspan="2" style="text-align: right">Total: ${{chapter.chapterCount}}
+					</th>
+					<th class="hdrTotal customerChange" colspan="2" style="text-align: right" ng-show="vm.modify">Customer total: ${{chapter.chapterCustTotal}}
+					</th>
+				</tr>
+				<tr data-ng-repeat="item in chapter.tjList" collapse="isCollapsed">
+					<td class="description">{{$index + 1}}. {{item.workDescription}}
+					</td>
+					<td class="amount">{{item.amount}}</td>
+					<td class="price" align="right">${{item.price}}</td>
+					<td class="unit">{{item.unitName}}</td>
+					<td class="minimum" align="right">${{item.minimumCharge}}</td>
+					<td class="total" align="right">${{item.total}}</td>
+					<td class="customerAmount customerChange" align="center" ng-show="vm.modify"><input type="text" data-ng-model="item.customerAmount"></td>
+					<td style="display: none" ng-show="vm.modify">{{item.customerTotal = item.customerAmount*item.price}}</td>
+					<td class="customerTotal customerChange" align="right" ng-if="item.customerAmount==null || item.customerAmount == ''" ng-show="vm.modify">${{item.customerTotal=item.total}}</td>
+					<td class="customerTotal customerChange" align="right" ng-if="item.customerAmount == 0 && item.customerAmount !=''" ng-show="vm.modify">${{item.customerTotal=0}}</td>
+					<td class="customerTotal customerChange" align="right" ng-if="item.customerTotal<=item.minimumCharge && item.customerTotal!=0 "
+									ng-show="vm.modify">${{item.customerTotal=item.minimumCharge}}
+						<td class="customerTotal customerChange" align="right" ng-if="item.customerTotal>item.minimumCharge" ng-show="vm.modify">${{item.customerTotal}}</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div class="form-group col-lg-4">
+		<button class="btn btn-success form-control" data-ng-click="vm.agree()" ng-show="!vm.modify">Accept estimate</button>
+		<button class="btn btn-success form-control" data-ng-click="vm.update()" ng-show="vm.modify">Submit modifyed estimate</button>
+	</div>
+	<div class="form-group col-lg-4">
+		<button class="btn btn-danger form-control" data-ng-click="vm.decline()" ng-show="!vm.modify">Reject estimate</button>
+		<button class="btn btn-warning form-control" data-ng-click="vm.recount()" ng-show="vm.modify">RE-count estimate</button>
+	</div>
+	<div class="form-group col-lg-4">
+		<button class="btn form-control" data-ng-click="vm.modify=!vm.modify" ng-class="{'btn-danger':vm.modify,'btn-warning':!vm.modify}">
+			<span ng-show="!vm.modify">Modify estimate</span> <span ng-show="vm.modify">Cancel editing</span>
+		</button>
+	</div>
+</div>

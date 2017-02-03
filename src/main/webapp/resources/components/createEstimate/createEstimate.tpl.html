@@ -39,7 +39,7 @@
                     <tr>
                         <td>First name: <input type="text" data-ng-model="vm.customer.name" name="name" required></td>
                         <td>Last name: <input type="text" data-ng-model="vm.customer.lastName" name="lastName" required></td>
-                        <td>Phone number: <input type="text" maxlength="13" data-ng-model="vm.customer.phoneNumber" required></td>
+                        <td>Phone number: <input type="text" maxlength="13" data-ng-model="vm.customer.phoneNumber" required ui-mask="{{'(999) 999-9999'}}"></td>
                     </tr>
                     <tr>
                         <td colspan=2>Address: <input type="text" size="55" data-ng-model="vm.customer.address" required></td>

@@ -3,6 +3,7 @@ package com.buildix.glorem.webServices;
 import java.security.Principal;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,7 @@ import com.buildix.glorem.services.UserService;
 public class EstimateWebServices {
 
 	private static final String ROLE_ADMIN = "ROLE_ADMIN";
+	private final Logger logger = Logger.getLogger(EstimateFormService.class);
 	
 	@Autowired
 	ChapterService chapterService;
@@ -163,9 +165,10 @@ public class EstimateWebServices {
 	 * @param id
 	 * @return
 	 */
-	@Secured(ROLE_ADMIN)
+	//@Secured(ROLE_ADMIN)
 	@RequestMapping(value="/showEstimate/{id}", method=RequestMethod.GET)
 	public List<EstimateForm> showCustomerEstimate(@PathVariable("id") Integer id ){
+		logger.info("Pulling customer estimate " + id);
 		return estimateFormService.getCustomerEstimate(id);
 	}
 	/**
@@ -175,6 +178,12 @@ public class EstimateWebServices {
 	@RequestMapping(value="/updateCustomerEstimate", method=RequestMethod.POST)
 	public void updateCustomerEstimate(@RequestBody List<EstimateForm> estimate){
 		estimateFormService.updateCustomerEstimate(estimate);
+	}
+	
+	@Secured(ROLE_ADMIN)
+	@RequestMapping(value="/updateItem", method=RequestMethod.PUT)
+	public void updateCustomerEstimate(@RequestBody TypeJob item){
+		tjService.updateItem(item);
 	}
 		
 }

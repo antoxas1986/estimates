@@ -13,8 +13,6 @@
     <center>
         <h1>Estimate book</h1>
     </center>
-
-
     <table class="table">
         <tr>
             <td class="description hdr"><em><strong>Work description</strong></em></td>
@@ -30,20 +28,33 @@
             <td colspan="8" class="red-line"></td>
         </tr>
     </table>
-    <table class="table" data-ng-repeat="chapter in vm.estimateForm">
+    <table class="table" data-ng-repeat="chapter in vm.estimateForm track by $index">
         <tr class="chapter-header">
             <th colspan="8">{{chapter.chapterName}}</th>
         </tr>
-        <tr data-ng-repeat="item in chapter.tjList">
-            <td class="description">{{$index + 1}}. {{item.workDescription}}</td>
+        <tr data-ng-repeat="item in chapter.tjList track by $index">
+            <td class="description" data-ng-show="!isEdit">{{$index + 1}}. {{item.workDescription}} <button data-ng-click="isEdit=vm.startEdit(isEdit)" class="pull-right"><i class="fa fa-edit"></i></button></td>
+            <td class="description" data-ng-show="isEdit">{{$index + 1}}. <input type="text" ng-model="item.workDescription">
+                <button class="mybutton pull-right" ng-click="isEdit = vm.cancelEdit(isEdit)"><i class="fa fa-remove"></i></button>
+                <button class="mybutton pull-right" ng-click="isEdit = vm.updateItem(item,isEdit)"><i class="fa fa-save"></i></button>
+            </td>
             <td class="amount"><input type="text" data-ng-model="item.amount"></td>
-            <td class="price" align="right">${{item.price}}</td>
-            <td class="unit">{{item.unitName}}</td>
-            <td class="minimum" align="right">${{item.minimumCharge}}</td>
+            <td class="price" align="right" data-ng-show="!isEdit">${{item.price}}</td>
+            <td class="price" align="right" data-ng-show="isEdit"><input type="text" ng-model="item.price"></td>
+            <td class="unit" data-ng-show="!isEdit">{{item.unitName}}</td>
+            <td class="unit" data-ng-show="isEdit"><select ng-options="unit.name as unit.name for unit in vm.units" ng-model="item.unitName"></select></td>
+            <td class="minimum" align="right" data-ng-show="!isEdit">${{item.minimumCharge}}</td>
+            <td class="minimum" align="right" data-ng-show="isEdit"><input type="text" ng-model="item.minimumCharge"></td>
             <td class="total">${{item.amount*item.price}}</td>
             <td class="but"><button class="btn btn-danger" data-ng-click="vm.remove(item.id)">
 					<i class="fa fa-trash"></i></button></td>
-            <td><input type="checkbox" checklist-model="vm.form.ids" checklist-value="item.id"></td>
+            <td>
+                <div class="squaredOne">
+                    <input type="checkbox" value="None" id="{{item.id}}{{$index}}" name="check" checklist-model="vm.form.ids" checklist-value="item.id"
+                    />
+                    <label for="{{item.id}}{{$index}}"></label>
+                </div>
+            </td>
         </tr>
     </table>
 </div>

@@ -248,3 +248,11 @@ h1{
 .no-pointerevents .myform p:nth-child(1):before {
     display: none;
 }
+.customer-phone{
+    font-size: 16px !important;
+    width: 45% !important;
+    padding: 4px 5px !important;;
+}
+.customer-label{
+    width:55% !important;
+}

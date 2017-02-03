@@ -22,4 +22,6 @@ public interface TypeJobDao {
 
 	void updateCustomerTypeJob(TypeJob typeJob);
 
+	void updateItem(TypeJob item);
+
 }

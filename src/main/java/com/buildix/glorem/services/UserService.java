@@ -1,10 +1,10 @@
 package com.buildix.glorem.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.buildix.glorem.models.User;
 import com.buildix.glorem.models.UserCred;
-
 
 /**
  * @author Anton Kuznetsov
@@ -16,7 +16,7 @@ public interface UserService {
 	 * @return
 	 */
 	User getUserByUserId(Integer userId);
-	
+
 	/**
 	 * @return
 	 */
@@ -33,8 +33,7 @@ public interface UserService {
 	void removeUserByUserId(Integer id);
 
 	boolean validateUser(UserCred userCred) throws Exception;
-	
 
+	Optional<User> customerLookup(String phone);
 
 }
-

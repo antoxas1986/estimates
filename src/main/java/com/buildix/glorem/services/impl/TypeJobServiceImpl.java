@@ -33,4 +33,10 @@ public class TypeJobServiceImpl implements TypeJobService {
 		
 	}
 
+	@Override
+	public void updateItem(TypeJob item) {
+		tjDao.updateItem(item);
+		
+	}
+
 }

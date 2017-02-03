@@ -11,6 +11,8 @@
 		vm.error = '';
 		vm.greeting = '';
 		vm.user = {};
+		vm.customer = {};
+		vm.customerLogin = customerLogin;
 
 		activate();
 
@@ -35,6 +37,15 @@
 			}).catch(function (xhr) {
 				vm.error = xhr.responseText;
 			});
+		}
+
+		function customerLogin() {
+			vm.error ='';
+			$http.post('/customerLookup', vm.customer).then(function (data) {
+				$state.go('customerEstimate',{id: data.data});
+			}),function () {
+				vm.error = 'Can not found customer with this phone number.';
+			};
 		}
 
 		function activate() {
