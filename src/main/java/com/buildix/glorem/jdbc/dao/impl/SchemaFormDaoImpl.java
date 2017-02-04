@@ -17,8 +17,10 @@ public class SchemaFormDaoImpl implements SchemaFormDao  {
 	private static final String SELECT_SCHEMA_COL_NUM = "Select schemaColNum from schemaForm where schemaName = ?";
 	private static final String SELECT_SCHEMA_NAMES = "Select schemaName from schemaForm group by schemaName;";
 	private static final String INSERT_INTO_SCHEMA_FORM = "insert into schemaForm(schemaName,schemaColNum) values(?,?)";
+	private static final String UPDATE_TEMPLATE_NAME="update schemaForm set schemaName = ? where schemaName = ? ";
+	private static final String DELETE_TEMPLATE = "delete from schemaForm where schemaName = ?";
 	private JdbcTemplate jdbcTemplate;
-	
+
 
 	/**
 	 * Sets the JdbcTemplate using the provided dataSource.
@@ -49,8 +51,16 @@ public class SchemaFormDaoImpl implements SchemaFormDao  {
 	public List<String> getSchemaFormNames() {
 		return jdbcTemplate.queryForList(SELECT_SCHEMA_NAMES, new Object[]{}, String.class);
 	}
-	
 
-	
+	@Override
+	public void updateTemplateName(String[] names) {
+		jdbcTemplate.update(UPDATE_TEMPLATE_NAME,names[1],names[0]);
+	}
+
+	@Override
+	public void deleteTemplate(String name) {
+		jdbcTemplate.update(DELETE_TEMPLATE, name);
+	}
+
 
 }

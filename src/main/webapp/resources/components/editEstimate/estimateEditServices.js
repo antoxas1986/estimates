@@ -1,21 +1,35 @@
-(function(){
+(function () {
 	angular.module('services').factory('estimateEditService', eeService);
-	eeService.$inject = ['$http','$rootScope','$resource'];
-	function eeService($http, $rootScope, $resource){
+	eeService.$inject = ['$resource'];
+
+	function eeService($resource) {
 		return {
-			getEstimate : $resource('/showEstimate/:id',{id:'@id'},{
-				'get':{method:'GET', isArray:true}
+			getEstimate: $resource('/showEstimate/:id', {
+				id: '@id'
+			}, {
+				'get': {
+					method: 'GET',
+					isArray: true
+				}
 			}),
-			updateEstimate: $resource('/updateCustomerEstimate',{},{
-				'save': {method:'POST'}
+			updateEstimate: $resource('/updateCustomerEstimate', {}, {
+				'save': {
+					method: 'POST'
+				}
 			}),
-			updateCustomer: $resource('/customer',{},{
-				'update': {method:'POST'}
+			updateCustomer: $resource('/customers', {}, {
+				'update': {
+					method: 'PUT'
+				}
 			}),
-			getCustomer : $resource('/customer/:id',{id:'@id'},{
-				'get':{method:'GET'}
-			})			
+			getCustomer: $resource('/customers/:id', {
+				id: '@id'
+			}, {
+				'get': {
+					method: 'GET'
+				}
+			})
 		};
 	}
-	
+
 }());

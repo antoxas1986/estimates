@@ -2,9 +2,9 @@
 	
 	angular.module('glorem').factory('createEstimateService', createEstimateService);
 	
-	createEstimateService.$inject = ['$http','$rootScope','$resource'];
+	createEstimateService.$inject = ['$resource'];
 	
-	function createEstimateService($http, $rootScope, $resource){
+	function createEstimateService($resource){
 		return {
 			getSchemaNameList : $resource('/getSchemaNames',{},{
 				'get':{method:'GET', isArray:true}
@@ -15,10 +15,10 @@
 			saveEstimate: $resource('/saveCustomerEstimate',{},{
 				'save': {method:'POST'}
 			}),
-			customer: $resource('/customer',{},{
+			customer: $resource('/customers',{},{
 				'save': {method:'POST'},
 			}),
-			customerCC: $resource('/CC',{},{
+			customerCC: $resource('/customers/empty',{},{
 				'get':{method: 'GET', isArray:true}
 			}),
 			

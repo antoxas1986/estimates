@@ -40,6 +40,7 @@ public class UserRowMapper implements RowMapper<User> {
 		user.setUpdCustomerGrandTotal(rs.getString(15));
 		user.setCondition(rs.getString(16));
 		user.setDate(rs.getDate(17));
+		user.setActive(rs.getBoolean(18));
 		return user;
 	}
 

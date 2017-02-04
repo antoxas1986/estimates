@@ -39,7 +39,9 @@
                     <tr>
                         <td>First name: <input type="text" data-ng-model="vm.customer.name" name="name" required></td>
                         <td>Last name: <input type="text" data-ng-model="vm.customer.lastName" name="lastName" required></td>
-                        <td>Phone number: <input type="text" maxlength="13" data-ng-model="vm.customer.phoneNumber" required ui-mask="{{'(999) 999-9999'}}"></td>
+                        <td>Phone number:
+                            <input type="text" maxlength="13" data-ng-model="vm.customer.phoneNumber" required
+                                ui-mask="{{'(999) 999-9999'}}"></td>
                     </tr>
                     <tr>
                         <td colspan=2>Address: <input type="text" size="55" data-ng-model="vm.customer.address" required></td>
@@ -97,7 +99,7 @@
         </p>
     </div>
     <form class="form-inline">
-       <div class="customer-selection">
+        <div class="customer-selection">
             <label for="estimateTypes">Select template:</label>
             <select id="estimateTemplate" class="form-control" ng-options="s as s for s in vm.schemas" ng-model="vm.name"></select>
             <button class="btn btn-primary" data-ng-click="vm.pull(vm.name)">Load Estimate Blank</button>
@@ -130,7 +132,6 @@
                     <th colspan="2">Total: ${{chapter.chapterCount}}</th>
                 </tr>
                 <tr data-ng-repeat="item in chapter.tjList" collapse="vm.isCollapsed">
-                    <input type="hidden" data-ng-model="item.customerId = vm.customer.id">
                     <td class="description">{{$index + 1}}. {{item.workDescription}}
                     </td>
                     <td class="amount"><input type="text" data-ng-model="item.amount"></td>

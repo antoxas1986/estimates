@@ -78,6 +78,7 @@
 				var total = 0;
 				for (var j = 0; j < list.length; j++) {
 					total = total + list[j].total * 1;
+					list[j].customerId = vm.customer.id;
 				}
 				vm.estimateForm[i].chapterCount = total;
 				customerTotal += total;

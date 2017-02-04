@@ -14,3 +14,10 @@
 .customer-selection {
     padding-left: 95px;
 }
+
+.template-name {
+    margin: auto;
+    width: 50px;
+    font-size: 18px;
+    font-weight: 800;
+}

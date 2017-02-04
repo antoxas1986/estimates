@@ -1,7 +1,7 @@
 <div data-ng-include="vm.navBar"></div>
 <div class="container">
-    <center>
-        <h1>Active estimates</h1>
+<center>
+        <h1>Archive estimates</h1>
     </center>
     <hr class="col-lg-12">
     <table class="table">
@@ -14,7 +14,7 @@
             <td class="hdr"><em><strong>EMAIL</strong></em></td>
             <td class="hdr"><em><strong>STATUS</strong></em></td>
             <td class="hdr"><em><strong>EDIT</strong></em></td>
-            <td class="hdr"><em><strong>SEND</strong></em></td>
+            <td class="hdr"><em><strong>RESTORE</strong></em></td>
             <td class="hdr"><em><strong>DEL</strong></em></td>
         </tr>
         <tr>
@@ -32,7 +32,7 @@
                 <a class="btn btn-sm btn-warning" ui-sref="editEstimate({id: estimate.id})"> <i class="fa fa-edit"></i> </a>
             </td>
             <td style="text-align: center">
-                <a class="btn btn-sm btn-primary" ng-click="vm.sendEstimate(estimate)"> <i class="fa fa-envelope"></i> </a>
+                <a class="btn btn-sm btn-primary" ng-click="vm.restoreEstimate(estimate)"> <i class="fa fa-undo"></i> </a>
             </td>
             <td style="text-align: center">
                 <a class="btn btn-sm btn-danger" ng-click="vm.remove(estimate)"> <i class="fa fa-trash"></i> </a>

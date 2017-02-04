@@ -13,26 +13,16 @@
 					isArray: true
 				}
 			}),
-			getCustomer: $resource('/customer/:id', {
+			getCustomer: $resource('/customers/:id', {
 				id: '@id'
 			}, {
 				get: {
 					method: 'GET'
 				}
 			}),
-			updateCustomer: $resource('/customer', {
-				id: '@id'
-			}, {
+			updateCustomer: $resource('/customers', {}, {
 				'update': {
-					method: 'POST'
-				},
-				'agree': {
-					url: '/customerAgree/:id',
-					method: 'GET'
-				},
-				'decline': {
-					url: '/customerDecline/:id',
-					method: 'GET'
+					method: 'PUT'
 				}
 			}),
 			updateEstimate: $resource('/updateCustomerEstimate', {}, {
@@ -47,7 +37,7 @@
 					method: 'GET'
 				}
 			})
-		}
+		};
 	}
 
 }());

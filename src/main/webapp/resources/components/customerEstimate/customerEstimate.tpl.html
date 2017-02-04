@@ -99,11 +99,11 @@
 		</form>
 	</div>
 	<div class="form-group col-lg-4">
-		<button class="btn btn-success form-control" data-ng-click="vm.agree()" ng-show="!vm.modify">Accept estimate</button>
+		<button class="btn btn-success form-control" data-ng-click="vm.agree(vm.customer)" ng-show="!vm.modify">Accept estimate</button>
 		<button class="btn btn-success form-control" data-ng-click="vm.update()" ng-show="vm.modify">Submit modifyed estimate</button>
 	</div>
 	<div class="form-group col-lg-4">
-		<button class="btn btn-danger form-control" data-ng-click="vm.decline()" ng-show="!vm.modify">Reject estimate</button>
+		<button class="btn btn-danger form-control" data-ng-click="vm.decline(vm.customer)" ng-show="!vm.modify">Reject estimate</button>
 		<button class="btn btn-warning form-control" data-ng-click="vm.recount()" ng-show="vm.modify">RE-count estimate</button>
 	</div>
 	<div class="form-group col-lg-4">

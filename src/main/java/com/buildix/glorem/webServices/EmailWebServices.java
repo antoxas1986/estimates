@@ -1,11 +1,9 @@
 package com.buildix.glorem.webServices;
 
+import com.buildix.glorem.models.User;
 import com.itextpdf.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.buildix.glorem.services.MailSenderService;
 
@@ -21,12 +19,9 @@ public class EmailWebServices {
 	@Autowired
 	MailSenderService msService;
 	
-	/**
-	 * @param id
-	 */
-	@RequestMapping(value="/sendEstimate/{id}", method=RequestMethod.GET)
-	public void sendCustomerEmail(@PathVariable("id") Integer id ) throws FileNotFoundException, DocumentException {
-		msService.sendCustomerEmail(id);
+	@RequestMapping(value="/sendEstimate", method=RequestMethod.POST)
+	public void sendCustomerEmail(@RequestBody User customer ) throws FileNotFoundException, DocumentException {
+		msService.sendCustomerEmail(customer);
 	}
 	
 	@RequestMapping(value="/emailEstimateFromCustomer/{id}", method=RequestMethod.GET)

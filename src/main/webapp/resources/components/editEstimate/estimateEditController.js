@@ -44,7 +44,6 @@
 				var customerTotal = 0;
 				for (var i = 0; i < vm.estimateForm.length; i++) {
 					var list = vm.estimateForm[i].tjList;
-					//var chTotal = vm.estimateForm[i].chapterCount;
 					var custTotal = 0;
 					for (var j = 0; j < list.length; j++) {
 						custTotal += list[j].total * 1;
@@ -71,7 +70,6 @@
 			var customerTotal = 0;
 			for (var i = 0; i < vm.estimateForm.length; i++) {
 				var list = vm.estimateForm[i].tjList;
-				//var chTotal = vm.estimateForm[i].chapterCount;
 				var total = 0;
 				for (var j = 0; j < list.length; j++) {
 					total = total + list[j].total * 1;

@@ -9,4 +9,9 @@ public interface SchemaFormDao {
 	void saveSchemaForm(SchemaForm schemaForm);
 	SchemaForm getSchemaFormByName(String name);
 	List<String> getSchemaFormNames();
+
+    void updateTemplateName(String[] names);
+
+    void deleteTemplate(String name);
+
 }

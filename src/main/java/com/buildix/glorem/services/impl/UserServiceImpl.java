@@ -25,8 +25,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> getAllActiveUsers() {
-		return userDao.getAllActiveUsers();
+	public List<User> getCCUsers() {
+		return userDao.getCCUsers();
 	}
 
 	@Override
@@ -43,21 +43,10 @@ public class UserServiceImpl implements UserService {
 		return userDao.getAllUsers();
 	}
 
-	@Override
-	public void changeStatusToAgree(Integer id) {
-		userDao.changeStatusToAgree(id);
-		
-	}
-	@Override
-	public void changeStatusToDecline(Integer id) {
-		userDao.changeStatusToDecline(id);
-		
-	}
 
 	@Override
-	public void removeUserByUserId(Integer id) {
-		userDao.removeUserByUserId(id);
-		
+	public void removeUserByUserId(Integer userId) {
+		userDao.removeUserByUserId(userId);
 	}
 
 	@Override
@@ -68,6 +57,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Optional<User> customerLookup(String phone) {
 		return userDao.customerLookup(phone);
+	}
+
+	@Override
+	public List<User> getDeactivateUsers() {
+		return userDao.getDeactivateUsers();
+	}
+
+	@Override
+	public void updateCustomer(User user) {
+		userDao.updateCustomer(user);
 	}
 
 }

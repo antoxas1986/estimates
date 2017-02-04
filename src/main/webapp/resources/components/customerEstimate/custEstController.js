@@ -50,22 +50,18 @@
 			vm.customer.updCustomerTotal = customerTotal;
 			vm.customer.updCustomerGrandTotal = (customerTotal - vm.customer.customerDiscount);
 			vm.customer.status = 'ECM';
-			custEstService.updateCustomer.update(
-				vm.customer,
-				function () {});
-			custEstService.updateEstimate.update(
-				vm.estimateForm,
-				function () {});
+			custEstService.updateCustomer.update(vm.customer, function () {});
+			custEstService.updateEstimate.update(vm.estimateForm, function () {});
 			custEstService.sendEmail.send({
 				id: id
 			}, function () {
 				alert('We accept your changes. Thank you!');
+				$state.go('/');
 			});
 
 		}
 
 		function recount() {
-			console.log('boo');
 			var customerTotal = 0;
 			for (var i = 0; i < vm.estimateForm.length; i++) {
 				var list = vm.estimateForm[i].tjList;
@@ -77,25 +73,23 @@
 				vm.estimateForm[i].chapterCustTotal = (chTotal - custTotal);
 				customerTotal += (chTotal - custTotal);
 			}
-			console.log(customerTotal);
 			vm.customer.updCustomerTotal = customerTotal;
 			vm.customer.updCustomerGrandTotal = (customerTotal - vm.customer.customerDiscount);
 		}
 
-		function agree() {
-			custEstService.updateCustomer.agree({
-				id: id
-			}, function () {
+		function agree(customer) {
+			customer.status = 'EA';
+			custEstService.updateCustomer.update(customer, function () {
 				alert('We accept your estimate. Thank you.');
-				$state.go('/login');
+				$state.go('/');
 			});
 		}
 
-		function decline() {
-			custEstService.updateCustomer.decline({
-				id: id
-			}, function () {
+		function decline(customer) {
+			customer.status = 'ED';
+			custEstService.updateCustomer.decline(customer, function () {
 				alert('Decline. Sorry to here that.');
+				$state.go('/');
 			});
 		}
 

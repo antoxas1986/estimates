@@ -27,4 +27,14 @@ public class SchemaFormServiceImpl implements SchemaFormService {
 		return schemaFormDao.getSchemaFormNames();
 	}
 
+	@Override
+	public void updateTemplateName(String[] names) {
+		schemaFormDao.updateTemplateName(names);
+	}
+
+	@Override
+	public void deleteTemplate(String name) {
+		schemaFormDao.deleteTemplate(name);
+	}
+
 }
